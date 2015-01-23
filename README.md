@@ -1,3 +1,2 @@
 # grafika
 Projekt grafika
-HUEHUE
