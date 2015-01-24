@@ -25,7 +25,7 @@ wxString wxbuildinfo(wxbuildinfoformat format){
 }
 
 BEGIN_EVENT_TABLE(ProjektFrame,wxFrame)
-/////eventy
+    /////eventy
 END_EVENT_TABLE()
 
 ProjektFrame * ProjektFrame::FRAME = NULL;
@@ -92,19 +92,19 @@ void ProjektFrame::OnAbout(wxCommandEvent& event){
 void ProjektFrame::setState(char state){
     _currentPanel -> Hide();
     switch (state){
-        case STATE_START   : {     
+        case STATE_MAIN   : {     
             if(!_mainPanel)  _mainPanel = new PanelGlowny(this,ID_PANEL_GLOWNY, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_PUNKTY"));
             _currentPanel = _mainPanel;    
             break;
         }
-        case STATE_OPTIONS : {
+        case STATE_SCORE : {
             if(!_scorePanel) _scorePanel = new PanelPunkty(this,ID_PANEL_PUNKTY, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_PUNKTY"));
             _currentPanel = _scorePanel;
             break;
         } 
-        case STATE_SCORE  : {
+        case STATE_OPTIONS  : {
             if(!_optionPanel) _optionPanel = new PanelOpcji(this,ID_PANEL_OPCJI, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_PUNKTY"));
-            _currentPanel = _scorePanel;
+            _currentPanel = _optionPanel;
             break;
         }    
         case STATE_GAME    : {
@@ -118,4 +118,9 @@ void ProjektFrame::setState(char state){
 
 void ProjektFrame::Quit(){
     Close();    
+}
+
+void ProjektFrame::setGamePanel(PanelGry * panel){
+    if(_gamePanel) delete _gamePanel;    
+    _gamePanel = panel;
 }

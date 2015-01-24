@@ -16,21 +16,21 @@ class PanelOpcji : public wxPanel{
         virtual ~PanelOpcji();   
         
 		void StartClick(wxCommandEvent& event);     
-		void ExitClick(wxCommandEvent& event);  
-		void ScoreClick(wxCommandEvent& event);  
+		void BackClick(wxCommandEvent& event);
+		void ContinueClick(wxCommandEvent& event);
         
     private :  
         enum{
     		ID_START = 13,
-            ID_EXIT = 14,
-            ID_SCORE = 15
+            ID_BACK = 14,
+            ID_CONTINUE = 15
         };
         
 		DECLARE_EVENT_TABLE();
     
         wxButton * _buttonStart;
-        wxButton * _buttonExit;
-        wxButton * _buttonScore;
+        wxButton * _buttonBack;
+        wxButton * _buttonContinue;
             
 };
 

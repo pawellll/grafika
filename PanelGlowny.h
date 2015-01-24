@@ -18,6 +18,7 @@ class PanelGlowny : public wxPanel{
 		void StartClick(wxCommandEvent& event);     
 		void ExitClick(wxCommandEvent& event);  
 		void ScoreClick(wxCommandEvent& event);  
+		
         
     private :  
         enum{

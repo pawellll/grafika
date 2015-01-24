@@ -1,7 +1,7 @@
 [Project]
 FileName=Projekt.dev
 Name=Project1
-UnitCount=8
+UnitCount=16
 PchHead=-1
 PchSource=-1
 Ver=3
@@ -167,9 +167,9 @@ CompilerSet=9
 CompilerType=9
 
 [Unit9]
-FileName=PanelGry.cpp
+FileName=PanelGlowny.cpp
 CompileCpp=1
-Folder=
+Folder=Project1
 Compile=1
 Link=1
 Priority=1000
@@ -177,9 +177,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit10]
-FileName=PanelGry.h
+FileName=PanelGlowny.h
 CompileCpp=1
-Folder=
+Folder=Project1
 Compile=1
 Link=1
 Priority=1000
@@ -187,9 +187,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit11]
-FileName=PanelGlowny.cpp
+FileName=PanelGry.cpp
 CompileCpp=1
-Folder=
+Folder=Project1
 Compile=1
 Link=1
 Priority=1000
@@ -197,9 +197,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit12]
-FileName=PanelGlowny.h
+FileName=PanelGry.h
 CompileCpp=1
-Folder=
+Folder=Project1
 Compile=1
 Link=1
 Priority=1000
@@ -207,9 +207,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit13]
-FileName=PanelOpcji.h
+FileName=PanelOpcji.cpp
 CompileCpp=1
-Folder=
+Folder=Project1
 Compile=1
 Link=1
 Priority=1000
@@ -217,9 +217,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit14]
-FileName=PanelOpcji.cpp
+FileName=PanelOpcji.h
 CompileCpp=1
-Folder=
+Folder=Project1
 Compile=1
 Link=1
 Priority=1000
@@ -227,9 +227,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit15]
-FileName=PanelPunkty.h
+FileName=PanelPunkty.cpp
 CompileCpp=1
-Folder=
+Folder=Project1
 Compile=1
 Link=1
 Priority=1000
@@ -237,9 +237,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit16]
-FileName=PanelPunkty.cpp
+FileName=PanelPunkty.h
 CompileCpp=1
-Folder=
+Folder=Project1
 Compile=1
 Link=1
 Priority=1000

@@ -1,14 +1,14 @@
 # Project: Project1
 # Compiler: Default GCC compiler
 # Compiler Type: MingW 3
-# Makefile created by wxDev-C++ IDE 7.4.2.569 on 24-01-15 17:02
+# Makefile created by wxDev-C++ IDE 7.4.2.569 on 24-01-15 18:24
 
 WXLIBNAME = wxmsw29u
 CPP       = g++.exe
 CC        = gcc.exe
 WINDRES   = "windres.exe"
-OBJ       = Objects/MingW/ProjektApp.o Objects/MingW/ProjektMain.o Objects/MingW/PuzzleData.o Objects/MingW/Tile.o Objects/MingW/PanelGry.o Objects/MingW/PanelGlowny.o Objects/MingW/PanelOpcji.o Objects/MingW/PanelPunkty.o
-LINKOBJ   = "Objects/MingW/ProjektApp.o" "Objects/MingW/ProjektMain.o" "Objects/MingW/PuzzleData.o" "Objects/MingW/Tile.o" "Objects/MingW/PanelGry.o" "Objects/MingW/PanelGlowny.o" "Objects/MingW/PanelOpcji.o" "Objects/MingW/PanelPunkty.o"
+OBJ       = Objects/MingW/ProjektApp.o Objects/MingW/ProjektMain.o Objects/MingW/PuzzleData.o Objects/MingW/Tile.o Objects/MingW/PanelGlowny.o Objects/MingW/PanelGry.o Objects/MingW/PanelOpcji.o Objects/MingW/PanelPunkty.o
+LINKOBJ   = "Objects/MingW/ProjektApp.o" "Objects/MingW/ProjektMain.o" "Objects/MingW/PuzzleData.o" "Objects/MingW/Tile.o" "Objects/MingW/PanelGlowny.o" "Objects/MingW/PanelGry.o" "Objects/MingW/PanelOpcji.o" "Objects/MingW/PanelPunkty.o"
 LIBS      = -L"C:/Program Files (x86)/Dev-Cpp/lib/wx/gcc_lib" -L"C:/Program Files (x86)/Dev-Cpp/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib" -mwindows -l$(WXLIBNAME) -l$(WXLIBNAME)_gl -lwxscintilla -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregexu -lwxexpat -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  
 INCS      = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include"
 CXXINCS   = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"C:/Program Files (x86)/Dev-Cpp/" -I"C:/Program Files (x86)/Dev-Cpp/include/common"
@@ -48,11 +48,11 @@ Objects/MingW/PuzzleData.o: $(GLOBALDEPS) PuzzleData.cpp
 Objects/MingW/Tile.o: $(GLOBALDEPS) Tile.cpp
 	$(CPP) -c Tile.cpp -o Objects/MingW/Tile.o $(CXXFLAGS)
 
-Objects/MingW/PanelGry.o: $(GLOBALDEPS) PanelGry.cpp
-	$(CPP) -c PanelGry.cpp -o Objects/MingW/PanelGry.o $(CXXFLAGS)
-
 Objects/MingW/PanelGlowny.o: $(GLOBALDEPS) PanelGlowny.cpp
 	$(CPP) -c PanelGlowny.cpp -o Objects/MingW/PanelGlowny.o $(CXXFLAGS)
+
+Objects/MingW/PanelGry.o: $(GLOBALDEPS) PanelGry.cpp
+	$(CPP) -c PanelGry.cpp -o Objects/MingW/PanelGry.o $(CXXFLAGS)
 
 Objects/MingW/PanelOpcji.o: $(GLOBALDEPS) PanelOpcji.cpp
 	$(CPP) -c PanelOpcji.cpp -o Objects/MingW/PanelOpcji.o $(CXXFLAGS)

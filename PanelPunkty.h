@@ -15,23 +15,16 @@ class PanelPunkty : public wxPanel{
         PanelPunkty (wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name);
         virtual ~PanelPunkty();   
         
-		void StartClick(wxCommandEvent& event);     
-		void ExitClick(wxCommandEvent& event);  
-		void ScoreClick(wxCommandEvent& event);  
+		void BackClick(wxCommandEvent& event);
         
     private :  
         enum{
-    		ID_START = 10,
-            ID_EXIT = 11,
-            ID_SCORE = 12
+            ID_BACK = 10
         };
         
 		DECLARE_EVENT_TABLE();
     
-        wxButton * _buttonStart;
-        wxButton * _buttonExit;
-        wxButton * _buttonScore;
-            
+        wxButton * _buttonBack;            
 };
 
 

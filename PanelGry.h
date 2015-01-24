@@ -9,6 +9,7 @@
 #include <wx/panel.h>
 #include <wx/frame.h>
 #include <wx/statusbr.h>
+#include <wx/button.h>
 
 #include "PuzzleData.h"
 #include <wx/dcclient.h>
@@ -21,29 +22,29 @@ class PanelGry : public wxPanel{
         PanelGry(wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name) ;
         virtual ~PanelGry();
         
+        bool paused();
+        
     private:
-
+    
+        enum {
+            ID_BACK = 0,
+            ID_PANEL1 = 1,
+            ID_TIMER = 2,
+            ID_PAUSE = 3
+        };		
+		
         void Paint();
         void UpdateUI(wxUpdateUIEvent& event);
         void PaintEvt(wxPaintEvent& event);
+        void BackClick(wxCommandEvent& event);
+        void PauseClick(wxCommandEvent& event);
+        
        // void OnTimer(wxTimerEvent& event);
 
-        //(*Handlers(ProjektFrame)
-        //void OnQuit(wxCommandEvent& event);
-        //void OnAbout(wxCommandEvent& event);
-        //*)
-
-        //(*Identifiers(ProjektFrame)
-        static const long ID_PANEL1;
-        //static const long idMenuQuit;
-        //static const long idMenuAbout;
-        static const long ID_STATUSBAR1;
-        //*)
-
-        //(*Declarations(ProjektFrame)
+        bool _pause;
         wxPanel* Panel1;
-        wxStatusBar* StatusBar1;
-        //*)
+        wxButton * _buttonBack;         
+        wxButton * _buttonPause;   
 
         DECLARE_EVENT_TABLE()
         
@@ -51,6 +52,5 @@ class PanelGry : public wxPanel{
         wxImage image;
         //wxBufferedDC dc;
 };
-
 
 #endif  ////// PANEL_GRY

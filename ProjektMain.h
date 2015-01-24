@@ -17,7 +17,7 @@
 
 #include "stdio.h"
 
-#define STATE_START 0
+#define STATE_MAIN 0
 #define STATE_OPTIONS 1
 #define STATE_SCORE 2
 #define STATE_GAME 3
@@ -33,10 +33,9 @@ class ProjektFrame: public wxFrame{
         void OnAbout(wxCommandEvent& event);
         void Quit();
         void setState(char state);
+		void setGamePanel(PanelGry * panel);
                 
         static ProjektFrame * FRAME;
-               
-    private:
         
         enum{
     		ID_PANEL1 = 1,
@@ -48,7 +47,9 @@ class ProjektFrame: public wxFrame{
     		ID_PANEL_PUNKTY = 7,
     		ID_PANEL_OPCJI = 8
         };
-        
+               
+    private:
+                      
 		DECLARE_EVENT_TABLE();
 		
         wxStatusBar* StatusBar1;        

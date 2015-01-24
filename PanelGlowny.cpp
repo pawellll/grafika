@@ -11,9 +11,9 @@ END_EVENT_TABLE()
 
 
 PanelGlowny::PanelGlowny (wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name): wxPanel(parent,ID,pos,size,style,name){
-    _buttonStart = new wxButton(this,ID_START,wxString("Zacznij grê"),wxPoint(80,100), wxSize(120,45),0,wxDefaultValidator, "START");
-    _buttonScore = new wxButton(this,ID_SCORE,wxString("Punktacja"),wxPoint(250,100), wxSize(120,45),0,wxDefaultValidator, "SCORE");  
-    _buttonExit = new wxButton(this,ID_EXIT,wxString("Wyjœcie"),wxPoint(420,100), wxSize(120,45),0,wxDefaultValidator, "EXIT"); 
+    _buttonStart = new wxButton(this,ID_START,wxString("Zacznij grê"),wxPoint(180,100), wxSize(120,45),0,wxDefaultValidator, "START");
+    _buttonScore = new wxButton(this,ID_SCORE,wxString("Punktacja"),wxPoint(350,100), wxSize(120,45),0,wxDefaultValidator, "SCORE");  
+    _buttonExit = new wxButton(this,ID_EXIT,wxString("Wyjœcie"),wxPoint(520,100), wxSize(120,45),0,wxDefaultValidator, "EXIT"); 
 }
 
 PanelGlowny::~PanelGlowny(){
@@ -34,5 +34,4 @@ void PanelGlowny::ScoreClick(wxCommandEvent& event){
     /// prze³¹czenie na panel punktacji
     ProjektFrame::FRAME->setState(STATE_SCORE);
 }
- 
 	
