@@ -1,62 +1,63 @@
-/***************************************************************
- * Name:      ProjektMain.h
- * Purpose:   Defines Application Frame
- * Author:    p (p)
- * Created:   2015-01-20
- * Copyright: p (p)
- * License:
- **************************************************************/
+/*
+    G³ówny frame w którym s¹ prze³¹czane kolejne panele
+*/
 
 #ifndef PROJEKTMAIN_H
 #define PROJEKTMAIN_H
 
-//(*Headers(ProjektFrame)
 #include <wx/menu.h>
 #include <wx/panel.h>
 #include <wx/frame.h>
 #include <wx/statusbr.h>
-//*)
-#include "PuzzleData.h"
-#include <wx/dcclient.h>
-#include <wx/dcbuffer.h>
-#include <wx/image.h>
 
-class ProjektFrame: public wxFrame
-{
+#include "PanelGry.h"
+#include "PanelGlowny.h"
+#include "PanelOpcji.h"
+#include "PanelPunkty.h"
+
+#include "stdio.h"
+
+#define STATE_START 0
+#define STATE_OPTIONS 1
+#define STATE_SCORE 2
+#define STATE_GAME 3
+
+
+class ProjektFrame: public wxFrame{
     public:
 
         ProjektFrame(wxWindow* parent,wxWindowID id = -1);
-        virtual ~ProjektFrame();
-
-    private:
-
-     void Paint();
-        void UpdateUI(wxUpdateUIEvent& event);
-        void PaintEvt(wxPaintEvent& event);
-       // void OnTimer(wxTimerEvent& event);
-
-        //(*Handlers(ProjektFrame)
+        virtual ~ProjektFrame();        
+        
         void OnQuit(wxCommandEvent& event);
         void OnAbout(wxCommandEvent& event);
-        //*)
-
-        //(*Identifiers(ProjektFrame)
-        static const long ID_PANEL1;
-        static const long idMenuQuit;
-        static const long idMenuAbout;
-        static const long ID_STATUSBAR1;
-        //*)
-
-        //(*Declarations(ProjektFrame)
-        wxPanel* Panel1;
-        wxStatusBar* StatusBar1;
-        //*)
-
-
-        DECLARE_EVENT_TABLE()
-        PuzzleData data;
-        wxImage image;
-        //wxBufferedDC dc;
+        void Quit();
+        void setState(char state);
+                
+        static ProjektFrame * FRAME;
+               
+    private:
+        
+        enum{
+    		ID_PANEL1 = 1,
+            idMenuQuit = 2,
+            idMenuAbout = 3,
+            ID_STATUSBAR1 = 4,
+    		ID_PANEL_GRY = 5,
+    		ID_PANEL_GLOWNY = 6,
+    		ID_PANEL_PUNKTY = 7,
+    		ID_PANEL_OPCJI = 8
+        };
+        
+		DECLARE_EVENT_TABLE();
+		
+        wxStatusBar* StatusBar1;        
+        wxPanel * _currentPanel;
+        
+        PanelGry * _gamePanel;
+        PanelOpcji * _optionPanel;
+        PanelPunkty * _scorePanel;
+        PanelGlowny * _mainPanel;
 };
 
 #endif // PROJEKTMAIN_H
