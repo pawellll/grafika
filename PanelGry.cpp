@@ -18,16 +18,16 @@ END_EVENT_TABLE()
 PanelGry::PanelGry(wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name) 
 :   wxPanel(parent,ID,pos,size,style,name){
        
-    //Panel1 = new wxPanel(this, ID_PANEL1, wxDefaultPosition, wxSize(600,600), wxTAB_TRAVERSAL, _T("ID_PANEL1"));
-    //Panel1->SetMinSize(wxSize(600,600));
-    //Panel1->SetMaxSize(wxSize(600,600));
+    Panel1 = new wxPanel(this, ID_PANEL1, wxDefaultPosition, wxSize(600,600), wxTAB_TRAVERSAL, _T("ID_PANEL1"));
+    Panel1->SetMinSize(wxSize(600,600));
+    Panel1->SetMaxSize(wxSize(600,600));
         
     _buttonBack = new wxButton(this,ID_BACK,wxString("Wróæ"),wxPoint(600,20), wxSize(80,35),0,wxDefaultValidator, "BACK_GAME");
     _buttonPause = new wxButton(this,ID_PAUSE,wxString("Pauza"),wxPoint(700,20), wxSize(80,35),0,wxDefaultValidator, "PAUSE_GAME"); 
      
        
     _pause = false;
-    /*
+    
     wxImageHandler * pngLoader = new wxJPEGHandler();
     wxImage::AddHandler(pngLoader);
 
@@ -36,7 +36,7 @@ PanelGry::PanelGry(wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize size, lo
     ///    SetTitle("ok");
     wxSize panelSize = Panel1->GetSize();
     data = PuzzleData(&image,panelSize,3,3,30,5);
-    data.CropImage();*/
+    data.CropImage();
     //data.Mix1();
     //data.RemoveTile(9,9);
    // data.MoveTile(9,8);
