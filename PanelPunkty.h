@@ -9,13 +9,16 @@
 #include <wx/frame.h>
 #include <wx/button.h>
 
+#include "PanelGry.h"
+
 class PanelPunkty : public wxPanel{
     public :
         
         PanelPunkty (wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name);
         virtual ~PanelPunkty();   
         
-		void BackClick(wxCommandEvent& event);
+		void backClick(wxCommandEvent& event); //////przycisk powrotu do g³ównego menu
+		void update(); //////wo³ane przy zakoñczeniu gry (statystyki s¹ zapisane w statycznym obiekcie GameSubPanel::LAST_STATS - plik PanelGry.h)
         
     private :  
         enum{

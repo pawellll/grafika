@@ -104,6 +104,7 @@ void ProjektFrame::setState(char state){
         } 
         case STATE_OPTIONS  : {
             if(!_optionPanel) _optionPanel = new PanelOpcji(this,ID_PANEL_OPCJI, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_PUNKTY"));
+            else              _optionPanel->onCurrentPanel(true);
             _currentPanel = _optionPanel;
             break;
         }    
@@ -114,6 +115,8 @@ void ProjektFrame::setState(char state){
         }  
     } 
     _currentPanel -> Show();    
+    
+    _currentPanel -> SetFocusIgnoringChildren ();  
 }
 
 void ProjektFrame::Quit(){
@@ -121,10 +124,14 @@ void ProjektFrame::Quit(){
 }
 
 void ProjektFrame::setGamePanel(PanelGry * panel){
-    if(_gamePanel) delete _gamePanel;    
+    if(_gamePanel) delete _gamePanel;             
     _gamePanel = panel;
 }
 
-void ProjektFrame::gameWon(){
-    
+void ProjektFrame::gameFinished(){
+    setState(STATE_SCORE);
+    GameSubPanel::LAST_STATS.time = _gamePanel->getTime();
+    _scorePanel -> update(); 
+    _scorePanel -> Show();
+    setGamePanel(NULL);        
 }

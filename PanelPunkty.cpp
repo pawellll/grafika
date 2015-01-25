@@ -3,7 +3,7 @@
 #include "ProjektMain.h"
 
 BEGIN_EVENT_TABLE(PanelPunkty,wxPanel)
-    EVT_BUTTON(ID_BACK,PanelPunkty::BackClick)
+    EVT_BUTTON(ID_BACK,PanelPunkty::backClick)
 END_EVENT_TABLE()
 
 
@@ -14,8 +14,12 @@ PanelPunkty::PanelPunkty (wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize s
 PanelPunkty::~PanelPunkty(){    
 }
 
-void PanelPunkty::BackClick(wxCommandEvent& event){
+void PanelPunkty::backClick(wxCommandEvent& event){
     ///prze³¹czenie na panel opcji gry    
     ProjektFrame::FRAME->setState(STATE_MAIN);
+}
+
+void PanelPunkty::update(){
+    
 }
 	

@@ -22,14 +22,13 @@ class PuzzleData
 
         void Draw( wxDC* v_DC );
         void CropImage();
-        void MoveTile( unsigned v_x, unsigned v_y );
+        bool MoveTile( unsigned v_x, unsigned v_y );
         void MoveColumn(unsigned v_column, bool v_topDirection );
         void MoveRow(unsigned v_row, bool v_rightDirection );
         void RemoveTile( unsigned v_x, unsigned v_y );
         void Mix1();
         void Mix2();
         bool IsCorrect();
-        bool ClickAndMove(unsigned v_x, unsigned v_y);
     protected:
     private:
         bool IsCorrectFieldPos(unsigned v_x, unsigned v_y) const;

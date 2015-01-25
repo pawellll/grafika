@@ -55,14 +55,7 @@ PanelOpcji::~PanelOpcji(){
 void PanelOpcji::StartClick(wxCommandEvent& event){
     ///prze³¹czenie na panel opcji gry    
     ///stworzenie odpowiedniego obiektu PanelGry (w zale¿noœci od wybranych parametrów)
-    
-    if(!_buttonContinue)
-        _buttonContinue = new wxButton(this,ID_CONTINUE,wxString("Dalej"),wxPoint(520,50), wxSize(120,45),0,wxDefaultValidator, "CONTINUE_OPTIONS");
-    else{
-            wxMessageDialog a (this,"Na pewno chcesz opuscic gre ?",wxMessageBoxCaptionStr, wxYES_NO|wxICON_QUESTION);
-            if( a.ShowModal() == wxID_NO ) return;
-        }
-        
+           
     wxString file;
     file = images[_choiceImage ->GetSelection ()];
     file = file + ".jpg";      
@@ -72,9 +65,15 @@ void PanelOpcji::StartClick(wxCommandEvent& event){
     if (!MyImage.LoadFile(file, wxBITMAP_TYPE_JPEG ) )
         wxLogError(wxT("Nie mo?na za3adowa obrazka"));
     else{        
+        if(!_buttonContinue)
+            _buttonContinue = new wxButton(this,ID_CONTINUE,wxString("Dalej"),wxPoint(520,50), wxSize(120,45),0,wxDefaultValidator, "CONTINUE_OPTIONS");
+        else{
+            wxMessageDialog a (this,"Na pewno chcesz opuscic gre ?",wxMessageBoxCaptionStr, wxYES_NO|wxICON_QUESTION);
+            if( a.ShowModal() == wxID_NO ) return;
+        }
         ProjektFrame::FRAME->setGamePanel(new PanelGry(ProjektFrame::FRAME,ProjektFrame::FRAME->ID_PANEL_GRY, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_GRY"),MyImage,3+_scrollSize->GetThumbPosition(), (_choiceGameType ->GetSelection () == 0) ) );
         ProjektFrame::FRAME->setState(STATE_GAME);
-        Hide();    
+        Hide();  
     }
 }
      
@@ -83,9 +82,12 @@ void PanelOpcji::BackClick(wxCommandEvent& event){
     ProjektFrame::FRAME->setState(STATE_MAIN);
 }
 
-void PanelOpcji::ContinueClick(wxCommandEvent& event){
-    ProjektFrame::FRAME->setState(STATE_GAME);  
-    Hide();   
+void PanelOpcji::ContinueClick(wxCommandEvent& event){    
+    if(ProjektFrame::FRAME->gameStarted()){
+        ProjektFrame::FRAME->setState(STATE_GAME);      
+        Hide();   
+    }else
+        _buttonContinue -> Hide();
 }
  
 void PanelOpcji::SizeScroll(wxScrollEvent& event){
@@ -112,6 +114,18 @@ void PanelOpcji::choosedImage(wxCommandEvent& event){
         if(_imgPreview) delete _imgPreview;
         _imgPreview = new wxBitmapButton(this,ID_ICON, wxBitmap( MyImage.Rescale(350,350) ), wxPoint(410,160), wxSize(350,350), 0, wxDefaultValidator, "WxButton2");    
     }  
+}
+
+void PanelOpcji::onCurrentPanel(bool current){
+    if(current){
+        if(ProjektFrame::FRAME->gameStarted())
+            _buttonContinue->Show();
+        else
+            _buttonContinue->Hide();
+            
+    }else{
+        Hide();
+    }   
 }
 
 

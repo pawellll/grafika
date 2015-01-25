@@ -19,6 +19,17 @@
 
 #include "PuzzleData.h"
 
+class PanelGry;
+
+class GameStats{
+    public :
+        GameStats(int LEVEL, bool GAMETYPE){time = 0; moves =0; level=LEVEL; gameType = GAMETYPE;}
+        unsigned int time;
+        unsigned int moves;
+        short int level;
+        bool gameType;    
+};
+
 class GameSubPanel : public wxPanel{
     public:
         GameSubPanel(wxWindow * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name, wxImage & img, int gameSize, bool gameType);
@@ -30,8 +41,13 @@ class GameSubPanel : public wxPanel{
         void updateUI(wxUpdateUIEvent& event);
         void paintEvt(wxPaintEvent& event);
         
+        static GameStats LAST_STATS;
+        
+        unsigned int _moves;
+        
     private:
         
+        void gameFinished();
         int _tiles,_lastX,_lastY;
         bool _type;
         DECLARE_EVENT_TABLE()
@@ -47,32 +63,39 @@ class PanelGry : public wxPanel{
         virtual ~PanelGry();
         
         bool paused();
+		
+        void paint();
+        void updateUI(wxUpdateUIEvent& event);
+        void backClick(wxCommandEvent& event);
+        void pauseClick(wxCommandEvent& event);
+        void keyDown(wxKeyEvent& event);
+        void keyUp(wxKeyEvent& event);
+        void mouseUp(wxMouseEvent& event){_panel1 -> mouseUp(event);}
+        void OnTimer(wxTimerEvent& event);
+        unsigned int getTime(){return _time;}
         
     private:
     
         enum {
             ID_BACK = 0,
             ID_PANEL1 = 1,
-            ID_TIMER = 2,
+            ID_TIMER = 666,
             ID_PAUSE = 3,
-            ID_ICON = 4
+            ID_ICON = 4,
+            ID_TEXT1 = 5,
+            ID_TEXT2 = 6
         };		
-		
-        void paint();
-        void updateUI(wxUpdateUIEvent& event);
-        void paintEvt(wxPaintEvent& event);
-        void backClick(wxCommandEvent& event);
-        void pauseClick(wxCommandEvent& event);
-        void keyDown(wxKeyEvent& event);
-        void keyUp(wxKeyEvent& event);
         
-       // void OnTimer(wxTimerEvent& event);
-
+        unsigned int _moves;
+        unsigned int _time;
         bool _pause;
         GameSubPanel* _panel1;
         wxButton * _buttonBack;         
         wxButton * _buttonPause;  
         wxBitmapButton * _imagePreview; 
+        wxStaticText * _textTime;
+        wxStaticText * _textMoves;
+        wxTimer * _timer;
 
         DECLARE_EVENT_TABLE()
         

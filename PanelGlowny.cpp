@@ -11,7 +11,7 @@ END_EVENT_TABLE()
 
 
 PanelGlowny::PanelGlowny (wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name): wxPanel(parent,ID,pos,size,style,name){
-    _buttonStart = new wxButton(this,ID_START,wxString("Zacznij grê"),wxPoint(180,100), wxSize(120,45),0,wxDefaultValidator, "START");
+    _buttonStart = new wxButton(this,ID_START,wxString("Nowa Gra"),wxPoint(180,100), wxSize(120,45),0,wxDefaultValidator, "START");
     _buttonScore = new wxButton(this,ID_SCORE,wxString("Punktacja"),wxPoint(350,100), wxSize(120,45),0,wxDefaultValidator, "SCORE");  
     _buttonExit = new wxButton(this,ID_EXIT,wxString("Wyjœcie"),wxPoint(520,100), wxSize(120,45),0,wxDefaultValidator, "EXIT"); 
 }

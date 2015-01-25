@@ -34,7 +34,8 @@ class ProjektFrame: public wxFrame{
         void Quit();
         void setState(char state);
 		void setGamePanel(PanelGry * panel);
-		void gameWon();
+		bool gameStarted(){return _gamePanel != NULL;}
+		void gameFinished();
                 
         static ProjektFrame * FRAME;
         

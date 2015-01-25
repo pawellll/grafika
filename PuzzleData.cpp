@@ -75,12 +75,13 @@ bool PuzzleData::IsCorrectFieldPos(unsigned v_x, unsigned v_y) const{
     else return false;
 }
 
-void PuzzleData::MoveTile( unsigned v_x, unsigned v_y )
+bool PuzzleData::MoveTile( unsigned v_x, unsigned v_y )
 {
-    if ( CheckNeighbourSwap(v_x, v_y, v_x+1, v_y) ) {  return; }
-    if ( CheckNeighbourSwap(v_x, v_y, v_x, v_y+1) ) {  return; }
-    if ( CheckNeighbourSwap(v_x, v_y, v_x-1, v_y) ) {  return; }
-    if ( CheckNeighbourSwap(v_x, v_y, v_x, v_y-1) ) {  return; }
+    if ( CheckNeighbourSwap(v_x, v_y, v_x+1, v_y) ) {  return true; }
+    if ( CheckNeighbourSwap(v_x, v_y, v_x, v_y+1) ) {  return true; }
+    if ( CheckNeighbourSwap(v_x, v_y, v_x-1, v_y) ) {  return true; }
+    if ( CheckNeighbourSwap(v_x, v_y, v_x, v_y-1) ) {  return true; }
+    return false;
 }
 
 bool PuzzleData::CheckNeighbourSwap( unsigned v_x, unsigned v_y, unsigned v_nx, unsigned v_ny )
@@ -165,27 +166,4 @@ bool PuzzleData::IsCorrect()
                 return false;
         }
     return true;
-}
-
-bool PuzzleData::ClickAndMove(unsigned v_x, unsigned v_y)
-{
-    int x = v_x - m_Padding;
-    int xd = x%(m_tileWidth+m_Gap);
-    if ( x > m_tileWidth )
-        return false;
-    int tile_x = x/(m_tileWidth+m_Gap);
-    if ( tile_x >= m_CountX )
-        return false;
-    int y = v_y - m_Padding;
-    int yd = y%(m_tileHeight+m_Gap);
-    if ( y > m_tileHeight )
-        return false;
-    int tile_y = y/(m_tileHeight+m_Gap);
-    if ( tile_y >= m_CountY )
-        return false;
-    if ( !m_Tiles[tile_y][tile_x]->GetIsRemoved() ){
-        MoveTile(tile_x,tile_y);
-        return true;
-    }
-    return false;
 }

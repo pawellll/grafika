@@ -26,6 +26,7 @@ class PanelOpcji : public wxPanel{
 		void ContinueClick(wxCommandEvent& event);
 		void SizeScroll(wxScrollEvent& event);
 		void choosedImage(wxCommandEvent& event);
+		void onCurrentPanel(bool current);
         
     private :  
         static const wxString labels [];
