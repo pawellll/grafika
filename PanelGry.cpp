@@ -196,11 +196,11 @@ void PanelGry::keyUp(wxKeyEvent& event){
 }
 
 void PanelGry::OnTimer(wxTimerEvent& event){
-    SetFocusIgnoringChildren ();
     if(!_pause) {
-            _time ++;    
-            std::ostringstream sstream;
-            sstream << "Czas : "<< _time << "s";
-            _textTime->SetLabel(sstream.str());
+        SetFocusIgnoringChildren ();
+        _time ++;    
+        std::ostringstream sstream;
+        sstream << "Czas : "<< _time << "s";
+        _textTime->SetLabel(sstream.str());
     }
 }

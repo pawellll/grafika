@@ -43,10 +43,7 @@ PanelOpcji::PanelOpcji (wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize siz
     if (!MyImage.LoadFile(file, wxBITMAP_TYPE_JPEG ) )
         wxLogError(wxT("Nie mo?na za3adowa obrazka"));
     else
-        {
-            _imgPreview = new wxBitmapButton(this,ID_ICON, wxBitmap( MyImage.Rescale(350,350) ), wxPoint(410,160), wxSize(350,350), 0, wxDefaultValidator, "WxButton2");    
-   
-        }    
+        _imgPreview = new wxBitmapButton(this,ID_ICON, wxBitmap( MyImage.Rescale(350,350) ), wxPoint(410,160), wxSize(350,350), 0, wxDefaultValidator, "WxButton2");        
 }
 
 PanelOpcji::~PanelOpcji(){    
