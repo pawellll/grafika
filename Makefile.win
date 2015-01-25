@@ -1,21 +1,21 @@
 # Project: Project1
 # Compiler: Default GCC compiler
 # Compiler Type: MingW 3
-# Makefile created by wxDev-C++ IDE 7.4.2.569 on 24-01-15 23:26
+# Makefile created by wxDev-C++ IDE 7.4.2.569 on 25-01-15 21:14
 
 WXLIBNAME = wxmsw29u
 CPP       = g++.exe
 CC        = gcc.exe
 WINDRES   = "windres.exe"
-OBJ       = Objects/MingW/ProjektApp.o Objects/MingW/ProjektMain.o Objects/MingW/PuzzleData.o Objects/MingW/Tile.o Objects/MingW/PanelGlowny.o Objects/MingW/PanelGry.o Objects/MingW/PanelOpcji.o Objects/MingW/PanelPunkty.o
-LINKOBJ   = "Objects/MingW/ProjektApp.o" "Objects/MingW/ProjektMain.o" "Objects/MingW/PuzzleData.o" "Objects/MingW/Tile.o" "Objects/MingW/PanelGlowny.o" "Objects/MingW/PanelGry.o" "Objects/MingW/PanelOpcji.o" "Objects/MingW/PanelPunkty.o"
+OBJ       = Objects/MingW/ProjektApp.o Objects/MingW/ProjektMain.o Objects/MingW/PuzzleData.o Objects/MingW/Tile.o Objects/MingW/PanelGlowny.o Objects/MingW/PanelGry.o Objects/MingW/PanelOpcji.o Objects/MingW/PanelPunkty.o Objects/MingW/BestScores.o
+LINKOBJ   = "Objects/MingW/ProjektApp.o" "Objects/MingW/ProjektMain.o" "Objects/MingW/PuzzleData.o" "Objects/MingW/Tile.o" "Objects/MingW/PanelGlowny.o" "Objects/MingW/PanelGry.o" "Objects/MingW/PanelOpcji.o" "Objects/MingW/PanelPunkty.o" "Objects/MingW/BestScores.o"
 LIBS      = -L"C:/Program Files (x86)/Dev-Cpp/lib/wx/gcc_lib" -L"C:/Program Files (x86)/Dev-Cpp/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib" -mwindows -l$(WXLIBNAME) -l$(WXLIBNAME)_gl -lwxscintilla -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregexu -lwxexpat -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  
 INCS      = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include"
 CXXINCS   = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"C:/Program Files (x86)/Dev-Cpp/" -I"C:/Program Files (x86)/Dev-Cpp/include/common"
 RCINCS    = --include-dir "C:/PROGRA~2/Dev-Cpp/include/common"
-BIN       = Output/MingW/Projekt.exe
+BIN       = Output/MingW/ProjektGFK.exe
 DEFINES   = -D__WXMSW__ -D__GNUWIN32__ -D_UNICODE
-CXXFLAGS  = $(CXXINCS) $(DEFINES)   
+CXXFLAGS  = $(CXXINCS) $(DEFINES) -std=gnu++0x  
 CFLAGS    = $(INCS) $(DEFINES)  
 GPROF     = gprof.exe
 ifeq ($(OS),Windows_NT)
@@ -59,3 +59,6 @@ Objects/MingW/PanelOpcji.o: $(GLOBALDEPS) PanelOpcji.cpp
 
 Objects/MingW/PanelPunkty.o: $(GLOBALDEPS) PanelPunkty.cpp
 	$(CPP) -c PanelPunkty.cpp -o Objects/MingW/PanelPunkty.o $(CXXFLAGS)
+
+Objects/MingW/BestScores.o: $(GLOBALDEPS) BestScores.cpp
+	$(CPP) -c BestScores.cpp -o Objects/MingW/BestScores.o $(CXXFLAGS)

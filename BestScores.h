@@ -10,7 +10,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "GameTypesEnum.h"
+#include "GameTypesEnum"
 
 class BestScores{
 public:

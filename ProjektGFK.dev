@@ -1,7 +1,7 @@
 [Project]
 FileName=Projekt.dev
 Name=Project1
-UnitCount=16
+UnitCount=19
 PchHead=-1
 PchSource=-1
 Ver=3
@@ -108,7 +108,7 @@ ProductName=
 ProductVersion=
 AutoIncBuildNrOnRebuild=0
 AutoIncBuildNrOnCompile=0
-UnitCount=16
+UnitCount=19
 
 [Profile1]
 ProfileName=MingW gcc
@@ -119,7 +119,7 @@ Libs=
 ResourceIncludes=
 MakeIncludes=
 Compiler=
-CppCompiler=_@@_
+CppCompiler=-std=gnu++0x_@@_
 Linker=-mwindows_@@_-l$(WXLIBNAME)_@@_-l$(WXLIBNAME)_gl_@@_-lwxscintilla_@@_-lwxtiff_@@_-lwxjpeg_@@_-lwxpng_@@_-lwxzlib_@@_-lwxregexu_@@_-lwxexpat_@@_-lkernel32_@@_-luser32_@@_-lgdi32_@@_-lcomdlg32_@@_-lwinspool_@@_-lwinmm_@@_-lshell32_@@_-lcomctl32_@@_-lole32_@@_-loleaut32_@@_-luuid_@@_-lrpcrt4_@@_-ladvapi32_@@_-lwsock32_@@_-lodbc32_@@_-lopengl32_@@_
 PreprocDefines=__WXMSW___@@___GNUWIN32___@@__UNICODE_@@_
 CompilerSettings=0000000000000000000000
@@ -242,6 +242,35 @@ CompileCpp=1
 Folder=Project1
 Compile=1
 Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit17]
+FileName=BestScores.cpp
+CompileCpp=1
+Folder=Project1
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit18]
+FileName=BestScores.h
+CompileCpp=1
+Folder=Project1
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit19]
+FileName=GameTypesEnum
+Folder=Project1
+Compile=0
+Link=0
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
