@@ -57,8 +57,7 @@ class PanelOpcji : public wxPanel{
         wxStaticText * _textGameType;
         wxChoice * _choiceImage;
         wxStaticText * _textImage;
-        wxBitmapButton * _imgPreview;
-                 
+        wxBitmapButton * _imgPreview;   
 };
 
 

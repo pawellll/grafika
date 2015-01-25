@@ -62,9 +62,20 @@ void PanelOpcji::StartClick(wxCommandEvent& event){
             wxMessageDialog a (this,"Na pewno chcesz opuscic gre ?",wxMessageBoxCaptionStr, wxYES_NO|wxICON_QUESTION);
             if( a.ShowModal() == wxID_NO ) return;
         }
-    ProjektFrame::FRAME->setGamePanel(new PanelGry(ProjektFrame::FRAME,ProjektFrame::FRAME->ID_PANEL_GRY, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_GRY") ) );
-    ProjektFrame::FRAME->setState(STATE_GAME);
-    Hide();    
+        
+    wxString file;
+    file = images[_choiceImage ->GetSelection ()];
+    file = file + ".jpg";      
+    wxImage MyImage;    
+    MyImage.AddHandler(new wxJPEGHandler); 
+    
+    if (!MyImage.LoadFile(file, wxBITMAP_TYPE_JPEG ) )
+        wxLogError(wxT("Nie mo?na za3adowa obrazka"));
+    else{        
+        ProjektFrame::FRAME->setGamePanel(new PanelGry(ProjektFrame::FRAME,ProjektFrame::FRAME->ID_PANEL_GRY, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_GRY"),MyImage,3+_scrollSize->GetThumbPosition(), (_choiceImage ->GetSelection () == 0) ) );
+        ProjektFrame::FRAME->setState(STATE_GAME);
+        Hide();    
+    }
 }
      
 void PanelOpcji::BackClick(wxCommandEvent& event){
@@ -73,7 +84,8 @@ void PanelOpcji::BackClick(wxCommandEvent& event){
 }
 
 void PanelOpcji::ContinueClick(wxCommandEvent& event){
-    ProjektFrame::FRAME->setState(STATE_GAME);    
+    ProjektFrame::FRAME->setState(STATE_GAME);  
+    Hide();   
 }
  
 void PanelOpcji::SizeScroll(wxScrollEvent& event){
