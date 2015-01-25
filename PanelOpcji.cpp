@@ -72,7 +72,7 @@ void PanelOpcji::StartClick(wxCommandEvent& event){
     if (!MyImage.LoadFile(file, wxBITMAP_TYPE_JPEG ) )
         wxLogError(wxT("Nie mo?na za3adowa obrazka"));
     else{        
-        ProjektFrame::FRAME->setGamePanel(new PanelGry(ProjektFrame::FRAME,ProjektFrame::FRAME->ID_PANEL_GRY, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_GRY"),MyImage,3+_scrollSize->GetThumbPosition(), (_choiceImage ->GetSelection () == 0) ) );
+        ProjektFrame::FRAME->setGamePanel(new PanelGry(ProjektFrame::FRAME,ProjektFrame::FRAME->ID_PANEL_GRY, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_GRY"),MyImage,3+_scrollSize->GetThumbPosition(), (_choiceGameType ->GetSelection () == 0) ) );
         ProjektFrame::FRAME->setState(STATE_GAME);
         Hide();    
     }

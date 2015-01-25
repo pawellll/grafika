@@ -124,3 +124,7 @@ void ProjektFrame::setGamePanel(PanelGry * panel){
     if(_gamePanel) delete _gamePanel;    
     _gamePanel = panel;
 }
+
+void ProjektFrame::gameWon(){
+    
+}
