@@ -36,6 +36,7 @@ GameSubPanel::GameSubPanel(wxWindow * parent, wxWindowID ID, wxPoint pos, wxSize
     
     data = PuzzleData(&image,panelSize,gameSize,gameSize,10,5);
     data.CropImage();
+    _end= false;
     if(_type)
         data.Mix1();
     else
@@ -87,13 +88,14 @@ void GameSubPanel::updateUI(wxUpdateUIEvent & event){
 }
 
 void GameSubPanel::gameFinished(){
-        LAST_STATS.gameType = _type;
-        LAST_STATS.level = _tiles;
-        LAST_STATS.moves = _moves;
-        paint();
-        wxMessageDialog a (this,"Wygra³eœ!",wxMessageBoxCaptionStr, wxOK);
-        a.ShowModal();        
-        ProjektFrame::FRAME -> gameFinished();
+    _end = true;
+    LAST_STATS.gameType = _type;
+    LAST_STATS.level = _tiles;
+    LAST_STATS.moves = _moves;
+    paint();
+    wxMessageDialog a (this,"Wygra³eœ!",wxMessageBoxCaptionStr, wxOK);
+    a.ShowModal();        
+    ProjektFrame::FRAME -> gameFinished();
         
 }
 
@@ -197,6 +199,8 @@ void PanelGry::keyUp(wxKeyEvent& event){
 
 void PanelGry::OnTimer(wxTimerEvent& event){
     if(!_pause) {
+        if(_panel1 -> gameEnd())
+            _timer -> Stop();
         SetFocusIgnoringChildren ();
         _time ++;    
         std::ostringstream sstream;

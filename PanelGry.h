@@ -40,6 +40,7 @@ class GameSubPanel : public wxPanel{
         void paint();
         void updateUI(wxUpdateUIEvent& event);
         void paintEvt(wxPaintEvent& event);
+        bool gameEnd(){return _end;}
         
         static GameStats LAST_STATS;
         
@@ -49,7 +50,7 @@ class GameSubPanel : public wxPanel{
         
         void gameFinished();
         int _tiles,_lastX,_lastY;
-        bool _type;
+        bool _type,_end;
         DECLARE_EVENT_TABLE()
         
         PuzzleData data;
