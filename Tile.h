@@ -9,39 +9,39 @@ class Tile
         Tile( wxImage* v_Image, unsigned v_PositionX, unsigned v_PositionY, unsigned v_ID, bool v_IsRemoved = false );
         virtual ~Tile();
 
-        unsigned int GetPositionX()
-        { return m_PositionX; }
+        unsigned int getPositionX()
+        { return _positionX; }
 
-        void SetPositionX(unsigned int val)
-        { m_PositionX = val; }
+        void setPositionX(unsigned int val)
+        { _positionX = val; }
 
-        unsigned int GetPositionY()
-        { return m_PositionY; }
+        unsigned int getPositionY()
+        { return _positionY; }
 
-        void SetPositionY(unsigned int val)
-        { m_PositionY = val; }
+        void setPositionY(unsigned int val)
+        { _positionY = val; }
 
-        bool GetIsRemoved()
-        { return m_IsRemoved; }
+        bool getIsRemoved()
+        { return _isRemoved; }
 
-        void SetIsRemoved(bool val)
-        { m_IsRemoved = val; }
+        void setIsRemoved(bool val)
+        { _isRemoved = val; }
 
-        wxImage* GetImage()
-        { return m_Image; }
+        wxImage* getImage()
+        { return _image; }
 
-        void SetImage(wxImage* val)
-        { m_Image = val; }
+        void setImage(wxImage* val)
+        { _image = val; }
 
-        unsigned GetID()
-        { return m_ID; }
+        unsigned getID()
+        { return _ID; }
     protected:
     private:
-        unsigned int m_ID;
-        unsigned int m_PositionX;
-        unsigned int m_PositionY;
-        bool m_IsRemoved;
-        wxImage* m_Image;
+        unsigned int _ID;
+        unsigned int _positionX;
+        unsigned int _positionY;
+        bool _isRemoved;
+        wxImage* _image;
 };
 
 #endif // TILE_H

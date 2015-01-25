@@ -33,54 +33,54 @@ GameSubPanel::GameSubPanel(wxWindow * parent, wxWindowID ID, wxPoint pos, wxSize
     _tiles = gameSize;
     _type = gameType;
     wxSize panelSize = this->GetSize();
-    
+
     data = PuzzleData(&image,panelSize,gameSize,gameSize,10,5);
-    data.CropImage();
+    data.cropImage();
     _end= false;
     if(_type)
-        data.Mix1();
+        data.mix1();
     else
-        data.Mix2();
+        data.mix2();
     _moves = 0;
 }
 
-GameSubPanel::~GameSubPanel(){    
+GameSubPanel::~GameSubPanel(){
 }
 
 void GameSubPanel::mouseDown(wxMouseEvent& event){
-    wxPoint pos = wxGetMousePosition() - GetScreenPosition();  
+    wxPoint pos = wxGetMousePosition() - GetScreenPosition();
     if(!_type) {
         _lastX = pos.x;
-        _lastY = pos.y;   
+        _lastY = pos.y;
         return;
-    }  
-    if (data.MoveTile(  pos.x / (GetSize().GetWidth() /_tiles),
-                        pos.y / (GetSize().GetHeight()/_tiles) ) 
-        ) _moves ++;               
-    
-    if(data.IsCorrect()) gameFinished();
+    }
+    if (data.moveTile(  pos.x / (GetSize().GetWidth() /_tiles),
+                        pos.y / (GetSize().GetHeight()/_tiles) )
+        ) _moves ++;
+
+    if(data.isCorrect()) gameFinished();
 }
 
 void GameSubPanel::mouseUp(wxMouseEvent& event){
     if(_type) return;
-    wxPoint pos = wxGetMousePosition() - GetScreenPosition();  
+    wxPoint pos = wxGetMousePosition() - GetScreenPosition();
     int dx = pos.x - _lastX;
     int dy = pos.y - _lastY;
     if(dx < 10 && dy < 10 && abs(dx - dy) < 10) return;
-    _moves ++; 
+    _moves ++;
     if(abs(dx) > abs(dy))
-        data.MoveRow(_lastY / (GetSize().GetHeight()/_tiles ),dx > 0) ;        
+        data.moveRow(_lastY / (GetSize().GetHeight()/_tiles ),dx > 0) ;
     else
-        data.MoveColumn(_lastX / (GetSize().GetWidth()/_tiles),dy < 0);
-        
-    if(data.IsCorrect()) gameFinished();    
+        data.moveColumn(_lastX / (GetSize().GetWidth()/_tiles),dy < 0);
+
+    if(data.isCorrect()) gameFinished();
 }
 
 void GameSubPanel::paint(){
     wxClientDC dcClient( this );
     wxBufferedDC dc(&dcClient);
     dc.Clear();
-    data.Draw( &dc );
+    data.draw( &dc );
 }
 
 void GameSubPanel::updateUI(wxUpdateUIEvent & event){
@@ -94,35 +94,35 @@ void GameSubPanel::gameFinished(){
     LAST_STATS.moves = _moves;
     paint();
     wxMessageDialog a (this,"Wygra³eœ!",wxMessageBoxCaptionStr, wxOK);
-    a.ShowModal();        
+    a.ShowModal();
     ProjektFrame::FRAME -> gameFinished();
-        
+
 }
 
 /*********************************************************************************
 
     GamePanel
-    
-**********************************************************************************/ 
 
-PanelGry::PanelGry(wxWindow * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name, wxImage img, int gameSize, bool gameType) 
+**********************************************************************************/
+
+PanelGry::PanelGry(wxWindow * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name, wxImage img, int gameSize, bool gameType)
 :   wxPanel(parent,ID,pos,size,style|wxWANTS_CHARS,name){
-       
+
     _panel1 = new GameSubPanel(this, ID_PANEL1, wxPoint(25,0), wxSize(500,500), wxTAB_TRAVERSAL, _T("ID_PANEL1"),img,gameSize, gameType);
     _panel1->SetMinSize(wxSize(500,500));
     _panel1->SetMaxSize(wxSize(500,500));
     _buttonBack = new wxButton(this,ID_BACK,wxString("Wróæ"),wxPoint(600,20), wxSize(80,35),0,wxDefaultValidator, "BACK_GAME");
-    _buttonPause = new wxButton(this,ID_PAUSE,wxString("Pauza"),wxPoint(700,20), wxSize(80,35),0,wxDefaultValidator, "PAUSE_GAME"); 
-           
+    _buttonPause = new wxButton(this,ID_PAUSE,wxString("Pauza"),wxPoint(700,20), wxSize(80,35),0,wxDefaultValidator, "PAUSE_GAME");
+
     _pause = false;
     image = img;
     _time = 0;
     _moves = 0;
-    
-    _imagePreview = new wxBitmapButton(this,ID_ICON, wxBitmap( image.Rescale(500,500) ), wxPoint(25,0), wxSize(500,500), 0, wxDefaultValidator, "PREVIEW"); 
-    _imagePreview -> Hide();  
+
+    _imagePreview = new wxBitmapButton(this,ID_ICON, wxBitmap( image.Rescale(500,500) ), wxPoint(25,0), wxSize(500,500), 0, wxDefaultValidator, "PREVIEW");
+    _imagePreview -> Hide();
     //_imagePreview -> Enable(false);
-    
+
     SetFocusIgnoringChildren ();
     _textTime = new wxStaticText(this, ID_TEXT1, wxT("Czas : 0s"), wxPoint(600,70), wxDefaultSize, 0, wxT("WxStaticText2"));
     _textMoves = new wxStaticText(this, ID_TEXT2, wxT("Ruchy : 0"), wxPoint(600,100), wxDefaultSize, 0, wxT("WxStaticText2"));
@@ -143,7 +143,7 @@ void PanelGry::updateUI(wxUpdateUIEvent & event){
 void PanelGry::backClick(wxCommandEvent& event){
     _pause = false;
     pauseClick(event);
-    ProjektFrame::FRAME->setState(STATE_OPTIONS);   
+    ProjektFrame::FRAME->setState(STATE_OPTIONS);
 }
 
 void PanelGry::pauseClick(wxCommandEvent& event){
@@ -155,22 +155,22 @@ void PanelGry::pauseClick(wxCommandEvent& event){
         _imagePreview -> Hide();
         }
     else{
-        _buttonPause->SetLabel("Kontynuuj");  
+        _buttonPause->SetLabel("Kontynuuj");
         _imagePreview -> Enable(false);
         _panel1 -> Hide();
         _imagePreview -> Show();
-        }  
+        }
     SetFocusIgnoringChildren ();
-    _pause = !_pause;      
+    _pause = !_pause;
 }
 
 bool PanelGry::paused(){
-    return _pause;   
+    return _pause;
 }
 
 void PanelGry::paint(){
-    _panel1->paint();  
-    
+    _panel1->paint();
+
     if(_moves != _panel1->_moves){
         _moves = _panel1->_moves;
         std::ostringstream sstream;
@@ -182,19 +182,19 @@ void PanelGry::paint(){
 void PanelGry::keyDown(wxKeyEvent& event){
     if(event.GetKeyCode() == 9){
         if(_pause)return;
-        _panel1 -> Hide();     
-        _imagePreview -> Show();   
+        _panel1 -> Hide();
+        _imagePreview -> Show();
         _imagePreview -> Enable(true);
-    }  
+    }
 }
-    
+
 void PanelGry::keyUp(wxKeyEvent& event){
     if(event.GetKeyCode() == 9){
         if(_pause)return;
         _imagePreview -> Enable(false);
         _imagePreview -> Hide();
         _panel1 -> Show();
-    }  
+    }
 }
 
 void PanelGry::OnTimer(wxTimerEvent& event){
@@ -202,7 +202,7 @@ void PanelGry::OnTimer(wxTimerEvent& event){
         if(_panel1 -> gameEnd())
             _timer -> Stop();
         SetFocusIgnoringChildren ();
-        _time ++;    
+        _time ++;
         std::ostringstream sstream;
         sstream << "Czas : "<< _time << "s";
         _textTime->SetLabel(sstream.str());
