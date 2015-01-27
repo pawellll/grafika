@@ -27,7 +27,7 @@ public:
     ~BestScores(); // d-tor
     void addScore(const std::string& name,const int time,const int moves,const GameTypesEnum type); // adii score with name of player, time in minutes, and GameType and sort type
     std::list<BestScores::score>* getScores(const GameTypesEnum type); // get score for particular gameType
-    bool isBestScore(const int time,const int moves,const GameTypesEnum type);
+    bool isBestScore(const int time,const int moves,const GameTypesEnum type); // check if scores is on of the best
     void print(); // print all scores - debug
 private:
     std::map<GameTypesEnum, std::list<score>* > _allBestScores; // scores for all types

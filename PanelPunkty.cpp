@@ -68,7 +68,39 @@ void PanelPunkty::createTypesList(){
     _keyValues->SetSelection(0);
 }
 
+
+/*
+    unsigned int time;
+    unsigned int moves;
+    short int level;
+    bool gameType;   
+*/
+
 void PanelPunkty::update(){
+    int gameTypeEnum = 0;
+    int time = GameSubPanel::LAST_STATS.time;
+    int moves = GameSubPanel::LAST_STATS.moves;
+    int level = GameSubPanel::LAST_STATS.level; // wymiar 3-> 3x3
+    gameTypeEnum += level-3;
+    bool gameType = GameSubPanel::LAST_STATS.gameType; // true - zwyk³a gra, flase - przesuwanie kolumn, wierszy
+    if(!gameType){
+        gameTypeEnum+=4;
+    }
+    bool isBestMoves;
+    bool isBestTime;
+    isBestMoves = _scores->isBestScore(time,moves,static_cast<GameTypesEnum>(gameTypeEnum));
+    isBestTime = _scores->isBestScore(time,moves,static_cast<GameTypesEnum>(gameTypeEnum+8));
+    if(isBestMoves || isBestTime){
+        wxString nick;
+        nick = wxGetTextFromUser("Podaj swój nick","Podaj swój nick","nick",this);
+        if(isBestMoves){
+             _scores->addScore(nick.ToStdString(),time,moves,static_cast<GameTypesEnum>(gameTypeEnum+8));
+        }
+        if(isBestTime){
+            _scores->addScore(nick.ToStdString(),time,moves,static_cast<GameTypesEnum>(gameTypeEnum));
+        }
+    }
+
 }
 
 void PanelPunkty::typeChanged(wxCommandEvent& event){

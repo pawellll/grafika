@@ -5,12 +5,12 @@
 bool BestScores::scoreCompare(const BestScores::score &lhs, const BestScores::score &rhs){ 
     if(std::get<TYPE>(lhs) == std::get<TYPE>(rhs)){
         if(std::get<TYPE>(lhs)>7){
-            return std::get<MOVES>(lhs) < std::get<MOVES>(rhs);
+            return std::get<MOVES>(lhs) < std::get<MOVES>(rhs); //sort on moves
         }else{
-            return std::get<TIME>(lhs) < std::get<TIME>(rhs);
+            return std::get<TIME>(lhs) < std::get<TIME>(rhs); // sort on time
         }
     }else{
-        return std::get<TYPE>(lhs) < std::get<TYPE>(rhs);
+        return std::get<TYPE>(lhs) < std::get<TYPE>(rhs); // sort on type
     }
 }
 

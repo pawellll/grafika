@@ -75,6 +75,7 @@ ProjektFrame::ProjektFrame(wxWindow* parent,wxWindowID id){
     _currentPanel->SetMaxSize(wxSize(800,600));
     
     FRAME = this;
+    _scores = new BestScores(); // init best scores
 }
 
 ProjektFrame::~ProjektFrame(){
@@ -99,8 +100,7 @@ void ProjektFrame::setState(char state){
             break;
         }
         case STATE_SCORE : {
-            if(!_scorePanel){
-                _scores = new BestScores();    
+            if(!_scorePanel){    
                 _scorePanel = new PanelPunkty(this,ID_PANEL_PUNKTY, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_PUNKTY"),_scores);
             }
             _currentPanel = _scorePanel;

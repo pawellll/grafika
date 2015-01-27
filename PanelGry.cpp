@@ -94,6 +94,7 @@ void GameSubPanel::gameFinished(){
     LAST_STATS.moves = _moves;
     paint();
     wxMessageDialog a (this,"Wygra³eœ!",wxMessageBoxCaptionStr, wxOK);
+    
     a.ShowModal();
     ProjektFrame::FRAME -> gameFinished();
 
