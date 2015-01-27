@@ -82,10 +82,12 @@ void PanelPunkty::update(){
     int moves = GameSubPanel::LAST_STATS.moves;
     int level = GameSubPanel::LAST_STATS.level; // wymiar 3-> 3x3
     gameTypeEnum += level-3;
+    
     bool gameType = GameSubPanel::LAST_STATS.gameType; // true - zwyk³a gra, flase - przesuwanie kolumn, wierszy
     if(!gameType){
         gameTypeEnum+=4;
     }
+    
     bool isBestMoves;
     bool isBestTime;
     isBestMoves = _scores->isBestScore(time,moves,static_cast<GameTypesEnum>(gameTypeEnum));
@@ -96,13 +98,12 @@ void PanelPunkty::update(){
             selection+=4;
         }
         _typesList->SetSelection(selection);
-        
         if(isBestMoves){
-            wxMessageBox ("Najlepszy wynik!","Gratulacje, Twój wynik zalicza siê do najlepszych pod wzglêdem liczby ruchów!",wxOK|wxCENTRE,this);
+            wxMessageBox ("Gratulacje, Twój wynik zalicza siê do najlepszych pod wzglêdem liczby ruchów!","Najlepszy wynik!",wxOK|wxCENTRE,this);
             _keyValues->SetSelection(1); 
         }
         if(isBestTime){
-            wxMessageBox ("Najlepszy wynik!","Gratulacje, Twój wynik zalicza siê do najlepszych pod wzglêdem czasu!",wxOK|wxCENTRE,this);
+            wxMessageBox ("Gratulacje, Twój wynik zalicza siê do najlepszych pod wzglêdem czasu!","Najlepszy wynik!",wxOK|wxCENTRE,this);
             _keyValues->SetSelection(0); 
         }
         
@@ -114,11 +115,15 @@ void PanelPunkty::update(){
         if(isBestTime){
             _scores->addScore(nick.ToStdString(),time,moves,static_cast<GameTypesEnum>(gameTypeEnum));
         }
+        comboBoxChanged();
     }
-
 }
 
 void PanelPunkty::typeChanged(wxCommandEvent& event){
+    comboBoxChanged();    
+}
+
+void PanelPunkty::comboBoxChanged(){
     if(_typesList->GetSelection()==wxNOT_FOUND){
         return;
     }

@@ -26,6 +26,7 @@ class PanelPunkty : public wxPanel{
     private :
         void typeChanged(wxCommandEvent& event);
         void createTypesList();  
+        void comboBoxChanged();
         enum{
             ID_BACK = 10,
             ID_TYPESLIST,

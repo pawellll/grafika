@@ -114,7 +114,9 @@ void ProjektFrame::setState(char state){
         }    
         case STATE_GAME    : {
             /// prze³¹czenie na panel gry - nale¿y wczeœniej stworzyæ odpowiedni obiekt dziedzicz¹cy po PanelGry poprzez odpowiedni¹ metodê w obiekcie ProjektMain.
-            if(_gamePanel) _currentPanel = _gamePanel;
+            if(_gamePanel){
+                _currentPanel = _gamePanel;
+            }
             break;
         }  
     } 

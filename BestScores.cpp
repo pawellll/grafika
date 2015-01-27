@@ -84,6 +84,7 @@ void BestScores::addScore(const std::string& name,const int time,const int moves
     if(scores->size()<5){
         scores->push_back(make_tuple(name,time,moves,type));
         scores->sort(BestScores::scoreCompare);
+        _changed=true;
     }else{
         // if there's more then 5 results on the list check the last one and replace with better one if needed, then sort
         BestScores::score score = scores->back();
