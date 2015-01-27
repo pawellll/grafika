@@ -91,6 +91,21 @@ void PanelPunkty::update(){
     isBestMoves = _scores->isBestScore(time,moves,static_cast<GameTypesEnum>(gameTypeEnum));
     isBestTime = _scores->isBestScore(time,moves,static_cast<GameTypesEnum>(gameTypeEnum+8));
     if(isBestMoves || isBestTime){
+        int selection=level-3;
+        if(!gameType){
+            selection+=4;
+        }
+        _typesList->SetSelection(selection);
+        
+        if(isBestMoves){
+            wxMessageBox ("Najlepszy wynik!","Gratulacje, Twój wynik zalicza siê do najlepszych pod wzglêdem liczby ruchów!",wxOK|wxCENTRE,this);
+            _keyValues->SetSelection(1); 
+        }
+        if(isBestTime){
+            wxMessageBox ("Najlepszy wynik!","Gratulacje, Twój wynik zalicza siê do najlepszych pod wzglêdem czasu!",wxOK|wxCENTRE,this);
+            _keyValues->SetSelection(0); 
+        }
+        
         wxString nick;
         nick = wxGetTextFromUser("Podaj swój nick","Podaj swój nick","nick",this);
         if(isBestMoves){
