@@ -14,6 +14,7 @@
 #include "PanelGlowny.h"
 #include "PanelOpcji.h"
 #include "PanelPunkty.h"
+#include "BestScores.h"
 
 #include "stdio.h"
 
@@ -61,6 +62,8 @@ class ProjektFrame: public wxFrame{
         PanelOpcji * _optionPanel;
         PanelPunkty * _scorePanel;
         PanelGlowny * _mainPanel;
+        
+        BestScores* _scores;
 };
 
 #endif // PROJEKTMAIN_H

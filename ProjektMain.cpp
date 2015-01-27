@@ -78,6 +78,7 @@ ProjektFrame::ProjektFrame(wxWindow* parent,wxWindowID id){
 }
 
 ProjektFrame::~ProjektFrame(){
+    delete _scores;
 }
 
 void ProjektFrame::OnQuit(wxCommandEvent& event){        
@@ -98,7 +99,10 @@ void ProjektFrame::setState(char state){
             break;
         }
         case STATE_SCORE : {
-            if(!_scorePanel) _scorePanel = new PanelPunkty(this,ID_PANEL_PUNKTY, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_PUNKTY"));
+            if(!_scorePanel){
+                _scores = new BestScores();    
+                _scorePanel = new PanelPunkty(this,ID_PANEL_PUNKTY, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_PUNKTY"),_scores);
+            }
             _currentPanel = _scorePanel;
             break;
         } 

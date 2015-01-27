@@ -4,30 +4,42 @@
 
 #ifndef PANEL_PUNKTY
 #define PANEL_PUNKTY
-
+#include <ostream>
+#include <fstream>
 #include <wx/panel.h>
 #include <wx/frame.h>
 #include <wx/button.h>
+#include <wx/sizer.h>
+#include <wx/combobox.h>
+#include <wx/listctrl.h>
+#include "BestScores.h"
 
-#include "PanelGry.h"
 
 class PanelPunkty : public wxPanel{
     public :
         
-        PanelPunkty (wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name);
+        PanelPunkty (wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name,BestScores* scores);
         virtual ~PanelPunkty();   
+        void update();
+		void BackClick(wxCommandEvent& event);
         
-		void backClick(wxCommandEvent& event); //////przycisk powrotu do g³ównego menu
-		void update(); //////wo³ane przy zakoñczeniu gry (statystyki s¹ zapisane w statycznym obiekcie GameSubPanel::LAST_STATS - plik PanelGry.h)
-        
-    private :  
+    private :
+        void typeChanged(wxCommandEvent& event);
+        void createTypesList();  
         enum{
-            ID_BACK = 10
+            ID_BACK = 10,
+            ID_TYPESLIST,
+            ID_TABLE,
+            ID_KEYVALUES
         };
         
 		DECLARE_EVENT_TABLE();
-    
-        wxButton * _buttonBack;            
+        wxButton* _buttonBack;
+        wxComboBox* _typesList;
+        wxComboBox* _keyValues; 
+        wxListView* _table;
+        BestScores* _scores;
+        
 };
 
 
