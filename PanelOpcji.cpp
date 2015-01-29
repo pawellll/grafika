@@ -65,8 +65,10 @@ void PanelOpcji::StartClick(wxCommandEvent& event){
         if(!_buttonContinue)
             _buttonContinue = new wxButton(this,ID_CONTINUE,wxString("Dalej"),wxPoint(520,50), wxSize(120,45),0,wxDefaultValidator, "CONTINUE_OPTIONS");
         else{
-            wxMessageDialog a (this,"Na pewno chcesz opuscic gre ?",wxMessageBoxCaptionStr, wxYES_NO|wxICON_QUESTION);
-            if( a.ShowModal() == wxID_NO ) return;
+            if(ProjektFrame::FRAME->gameStarted()){
+                wxMessageDialog a (this,"Na pewno chcesz opuscic gre ?",wxMessageBoxCaptionStr, wxYES_NO|wxICON_QUESTION);
+                if( a.ShowModal() == wxID_NO ) return;
+            }
         }
         ProjektFrame::FRAME->setGamePanel(new PanelGry(ProjektFrame::FRAME,ProjektFrame::FRAME->ID_PANEL_GRY, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_GRY"),MyImage,3+_scrollSize->GetThumbPosition(), (_choiceGameType ->GetSelection () == 0) ) );
         ProjektFrame::FRAME->setState(STATE_GAME);
