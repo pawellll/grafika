@@ -1,0 +1,107 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{url}
+\usepackage[margin=2.5cm]{geometry} %layout
+% the following is needed for syntax highlighting
+\usepackage{color}
+\usepackage{listings} % needed for the inclusion of source code
+\usepackage{amsmath}
+
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+
+\textsc{\LARGE Programowanie urządzeń mobilnych pod kątem zastosowań biometrycznych}\\[1.5cm]
+
+\vskip 3cm
+
+\textsc{\Large Sprawozdanie I}\\[0.5cm]
+
+{ \huge \bfseries Temat: EKG \\[0.4cm] }
+
+\vskip 6cm
+% Author and supervisor
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Autor:}\\
+Paweł Pęksa
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Prowadzący ćwiczenia:} \\
+mgr Krzysztof Misztal
+\end{flushright}
+\end{minipage}
+
+\vfill
+
+% Bottom of the page
+{\large Kraków, \today
+}
+
+\end{center}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\section{Temat zadania}
+Celem projektu było wyświetlenie fragmentu EKG na urządzeniu z systemem Android.
+
+ 
+\section{Proponowane rozwiązanie}
+Aplikacja została napisana z użyciem biblioteki do rysowania wykresów AndroidPlot. Dane stanowiły dwie próbki pobrany z bazy dostępnej w internecie, a konkretniej ich pierwsze 4 sekundy.
+
+\subsection{Krok 1: Wczytanie danych z pliku}
+Dane były wczytywane z pliku z pomocą klasy BufferedReader dostępnej w bibliotece javy. Pierwsze dwie linie pliku CSV stanowiące nagłówek były pomijane, następnie przetwarzane były kolejne linijki tak, aby móc swobodnie je umieścić w obiektach klasy ArrayList stanowiących odpowiednio kontenery danych dla dziedziny oraz wartości funkcji.
+
+\subsubsection{Czynności}
+Kod metody realizującej wczytywanie danych z pliku
+
+
+\subsection{Krok 2: Rysowanie wykresu}
+Rysowanie wykresu realizowane z pomocą biblioteki AndroidPlot polegało na stworzeniu obiketów dla każdej funkcji, które chcieliśmy przedstawić oraz stworzeniu dla nich odpowiednich formatów w celu wyświetlania.
+
+\subsubsection{Czynności}
+Kod metody realizującej rysowanie wykresu
+
+
+\subsubsection{Rezultat}
+Tu jest zakomentowany obrazek, jakby trzeba było to tak można właśnie go wrzucić
+%\begin{center}
+%    \centering
+%    \includegraphics[scale=0.5]{res/ekg.png}
+%    \\Wykresy EKG
+%    \label{simulationfigure}
+%\end{center}
+
+
+\section{Wnioski}
+Podumowując, aplikacja spełnia swoje zadanie. Wykresy są rysowane poprawnie. 
+\clearpage
+\addcontentsline{toc}{section}{Literatura}
+\begin{thebibliography}{9}
+
+\bibitem{Simpson} Strona laboratorium 
+\url{misztal.edu.pl}
+
+\bibitem{Simpson} Biblioteka AndroidPlot
+\url{androidplot.com}
+
+
+\bibitem{Simpson} Baza danych EKG
+\url{www.physionet.org/cgi-bin/atm/ATM}
+
+\end{thebibliography}
+
+\end{document}
