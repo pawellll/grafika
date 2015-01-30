@@ -15,11 +15,11 @@
 #include <wx/image.h>
 #include <wx/bmpbuttn.h>
 
-class PanelOpcji : public wxPanel{
+class OptionsPanel : public wxPanel{
     public :
         
-        PanelOpcji (wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name);
-        virtual ~PanelOpcji();   
+        OptionsPanel (wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name);
+        virtual ~OptionsPanel();   
         
 		void StartClick(wxCommandEvent& event);     
 		void BackClick(wxCommandEvent& event);

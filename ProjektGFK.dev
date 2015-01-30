@@ -1,5 +1,5 @@
 [Project]
-FileName=Projekt.dev
+FileName=ProjektGFK.dev
 Name=Project1
 UnitCount=19
 PchHead=-1
@@ -267,11 +267,12 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit19]
-FileName=GameTypesEnum
+FileName=GameTypesEnum.h
 Folder=Project1
-Compile=0
-Link=0
+Compile=1
+Link=1
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
+CompileCpp=1
 

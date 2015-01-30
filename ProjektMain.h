@@ -34,7 +34,7 @@ class ProjektFrame: public wxFrame{
         void OnAbout(wxCommandEvent& event);
         void Quit();
         void setState(char state);
-		void setGamePanel(PanelGry * panel);
+		void setGamePanel(GamePanel * panel);
 		bool gameStarted(){return _gamePanel != NULL;}
 		void gameFinished();
                 
@@ -58,10 +58,10 @@ class ProjektFrame: public wxFrame{
         wxStatusBar* StatusBar1;        
         wxPanel * _currentPanel;
         
-        PanelGry * _gamePanel;
-        PanelOpcji * _optionPanel;
-        PanelPunkty * _scorePanel;
-        PanelGlowny * _mainPanel;
+        GamePanel * _gamePanel;
+        OptionsPanel * _optionPanel;
+        ScorePanel * _scorePanel;
+        MainPanel * _mainPanel;
         
         BestScores* _scores;
 };

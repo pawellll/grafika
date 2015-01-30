@@ -15,11 +15,11 @@
 #include "BestScores.h"
 
 
-class PanelPunkty : public wxPanel{
+class ScorePanel : public wxPanel{
     public :
         
-        PanelPunkty (wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name,BestScores* scores);
-        virtual ~PanelPunkty();   
+        ScorePanel (wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name,BestScores* scores);
+        virtual ~ScorePanel();   
         void update();
 		void BackClick(wxCommandEvent& event);
         

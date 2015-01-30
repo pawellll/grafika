@@ -19,7 +19,7 @@
 
 #include "PuzzleData.h"
 
-class PanelGry;
+class GamePanel;
 
 class GameStats{
     public :
@@ -57,11 +57,11 @@ class GameSubPanel : public wxPanel{
         wxImage image;
 };
     
-class PanelGry : public wxPanel{
+class GamePanel : public wxPanel{
     public :    
         
-        PanelGry(wxWindow * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name, wxImage img, int gameSize, bool gameType);
-        virtual ~PanelGry();
+        GamePanel(wxWindow * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name, wxImage img, int gameSize, bool gameType);
+        virtual ~GamePanel();
         
         bool paused();
 		

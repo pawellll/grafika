@@ -65,7 +65,7 @@ ProjektFrame::ProjektFrame(wxWindow* parent,wxWindowID id){
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&ProjektFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&ProjektFrame::OnAbout);
     
-    _mainPanel = new PanelGlowny(this,ID_PANEL_GLOWNY, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_GRY"));
+    _mainPanel = new MainPanel(this,ID_PANEL_GLOWNY, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_GRY"));
     _currentPanel = _mainPanel;
     _optionPanel = NULL;
     _scorePanel = NULL;
@@ -95,19 +95,19 @@ void ProjektFrame::setState(char state){
     _currentPanel -> Hide();
     switch (state){
         case STATE_MAIN   : {     
-            if(!_mainPanel)  _mainPanel = new PanelGlowny(this,ID_PANEL_GLOWNY, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_PUNKTY"));
+            if(!_mainPanel)  _mainPanel = new MainPanel(this,ID_PANEL_GLOWNY, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_PUNKTY"));
             _currentPanel = _mainPanel;    
             break;
         }
         case STATE_SCORE : {
             if(!_scorePanel){    
-                _scorePanel = new PanelPunkty(this,ID_PANEL_PUNKTY, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_PUNKTY"),_scores);
+                _scorePanel = new ScorePanel(this,ID_PANEL_PUNKTY, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_PUNKTY"),_scores);
             }
             _currentPanel = _scorePanel;
             break;
         } 
         case STATE_OPTIONS  : {
-            if(!_optionPanel) _optionPanel = new PanelOpcji(this,ID_PANEL_OPCJI, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_PUNKTY"));
+            if(!_optionPanel) _optionPanel = new OptionsPanel(this,ID_PANEL_OPCJI, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_PUNKTY"));
             else              _optionPanel->onCurrentPanel(true);
             _currentPanel = _optionPanel;
             break;
@@ -129,7 +129,7 @@ void ProjektFrame::Quit(){
     Close();    
 }
 
-void ProjektFrame::setGamePanel(PanelGry * panel){
+void ProjektFrame::setGamePanel(GamePanel * panel){
     if(_gamePanel) delete _gamePanel;             
     _gamePanel = panel;
 }

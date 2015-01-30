@@ -9,16 +9,16 @@ BEGIN_EVENT_TABLE(GameSubPanel,wxPanel)
     EVT_LEFT_UP(GameSubPanel::mouseUp)
 END_EVENT_TABLE()
 
-BEGIN_EVENT_TABLE(PanelGry,wxPanel)
-    EVT_UPDATE_UI(ID_PANEL1, PanelGry::updateUI)
-    EVT_BUTTON(ID_BACK,PanelGry::backClick)
-    EVT_BUTTON(ID_PAUSE,PanelGry::pauseClick)
-    EVT_KEY_UP(PanelGry::keyUp)
-    EVT_KEY_DOWN(PanelGry::keyDown)
-    EVT_CHAR_HOOK(PanelGry::keyDown)
-    EVT_CHAR(PanelGry::keyDown)
-    EVT_LEFT_UP(PanelGry::mouseUp)
-    EVT_TIMER(ID_TIMER, PanelGry::OnTimer)
+BEGIN_EVENT_TABLE(GamePanel,wxPanel)
+    EVT_UPDATE_UI(ID_PANEL1, GamePanel::updateUI)
+    EVT_BUTTON(ID_BACK,GamePanel::backClick)
+    EVT_BUTTON(ID_PAUSE,GamePanel::pauseClick)
+    EVT_KEY_UP(GamePanel::keyUp)
+    EVT_KEY_DOWN(GamePanel::keyDown)
+    EVT_CHAR_HOOK(GamePanel::keyDown)
+    EVT_CHAR(GamePanel::keyDown)
+    EVT_LEFT_UP(GamePanel::mouseUp)
+    EVT_TIMER(ID_TIMER, GamePanel::OnTimer)
 END_EVENT_TABLE()
 
 /*
@@ -106,7 +106,7 @@ void GameSubPanel::gameFinished(){
 
 **********************************************************************************/
 
-PanelGry::PanelGry(wxWindow * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name, wxImage img, int gameSize, bool gameType)
+GamePanel::GamePanel(wxWindow * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name, wxImage img, int gameSize, bool gameType)
 :   wxPanel(parent,ID,pos,size,style|wxWANTS_CHARS,name){
 
     _panel1 = new GameSubPanel(this, ID_PANEL1, wxPoint(25,0), wxSize(500,500), wxTAB_TRAVERSAL, _T("ID_PANEL1"),img,gameSize, gameType);
@@ -132,22 +132,22 @@ PanelGry::PanelGry(wxWindow * parent, wxWindowID ID, wxPoint pos, wxSize size, l
     _timer->Start(INTERVAL);
 }
 
-PanelGry::~PanelGry(){
+GamePanel::~GamePanel(){
     _timer -> Stop();
     delete _timer;
 }
 
-void PanelGry::updateUI(wxUpdateUIEvent & event){
+void GamePanel::updateUI(wxUpdateUIEvent & event){
     paint();
 }
 
-void PanelGry::backClick(wxCommandEvent& event){
+void GamePanel::backClick(wxCommandEvent& event){
     _pause = false;
     pauseClick(event);
     ProjektFrame::FRAME->setState(STATE_OPTIONS);
 }
 
-void PanelGry::pauseClick(wxCommandEvent& event){
+void GamePanel::pauseClick(wxCommandEvent& event){
     SetFocusIgnoringChildren ();
     if(_pause){
         _buttonPause->SetLabel("Pauza");
@@ -165,11 +165,11 @@ void PanelGry::pauseClick(wxCommandEvent& event){
     _pause = !_pause;
 }
 
-bool PanelGry::paused(){
+bool GamePanel::paused(){
     return _pause;
 }
 
-void PanelGry::paint(){
+void GamePanel::paint(){
     _panel1->paint();
 
     if(_moves != _panel1->_moves){
@@ -180,7 +180,7 @@ void PanelGry::paint(){
     }
 }
 
-void PanelGry::keyDown(wxKeyEvent& event){
+void GamePanel::keyDown(wxKeyEvent& event){
     if(event.GetKeyCode() == 9){
         if(_pause)return;
         _panel1 -> Hide();
@@ -189,7 +189,7 @@ void PanelGry::keyDown(wxKeyEvent& event){
     }
 }
 
-void PanelGry::keyUp(wxKeyEvent& event){
+void GamePanel::keyUp(wxKeyEvent& event){
     if(event.GetKeyCode() == 9){
         if(_pause)return;
         _imagePreview -> Enable(false);
@@ -198,7 +198,7 @@ void PanelGry::keyUp(wxKeyEvent& event){
     }
 }
 
-void PanelGry::OnTimer(wxTimerEvent& event){
+void GamePanel::OnTimer(wxTimerEvent& event){
     if(!_pause) {
         if(_panel1 -> gameEnd())
             _timer -> Stop();

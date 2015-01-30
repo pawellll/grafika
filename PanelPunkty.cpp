@@ -7,10 +7,10 @@
 #include <list>
 
 
-BEGIN_EVENT_TABLE(PanelPunkty,wxPanel)
-    EVT_BUTTON(ID_BACK,PanelPunkty::BackClick)
-    EVT_COMBOBOX(ID_TYPESLIST, PanelPunkty::typeChanged)
-    EVT_COMBOBOX(ID_KEYVALUES, PanelPunkty::typeChanged)
+BEGIN_EVENT_TABLE(ScorePanel,wxPanel)
+    EVT_BUTTON(ID_BACK,ScorePanel::BackClick)
+    EVT_COMBOBOX(ID_TYPESLIST, ScorePanel::typeChanged)
+    EVT_COMBOBOX(ID_KEYVALUES, ScorePanel::typeChanged)
 END_EVENT_TABLE()
 
 std::string typesNames[8]{
@@ -25,7 +25,7 @@ std::string typesNames[8]{
     "Typ 2 Rozmiar: 6x6",
 };
 
-PanelPunkty::PanelPunkty(wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name,BestScores* scores): 
+ScorePanel::ScorePanel(wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name,BestScores* scores): 
     wxPanel(parent,ID,pos,size,style,name),
     _scores(scores)
 {
@@ -49,15 +49,15 @@ PanelPunkty::PanelPunkty(wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize si
 
 
 
-PanelPunkty::~PanelPunkty(){     
+ScorePanel::~ScorePanel(){     
 }
 
-void PanelPunkty::BackClick(wxCommandEvent& event){
+void ScorePanel::BackClick(wxCommandEvent& event){
     ///prze³¹czenie na panel opcji gry    
     ProjektFrame::FRAME->setState(STATE_MAIN);
 }
 
-void PanelPunkty::createTypesList(){
+void ScorePanel::createTypesList(){
     _typesList = new wxComboBox(this,ID_TYPESLIST,"Wybierz rodzaj gry",wxPoint(5,30), wxSize(220,25));
     for(int i=0; i!=8; ++i){
         _typesList->Append(typesNames[i]);
@@ -76,7 +76,7 @@ void PanelPunkty::createTypesList(){
     bool gameType;   
 */
 
-void PanelPunkty::update(){
+void ScorePanel::update(){
     int gameTypeEnum = 0;
     int time = GameSubPanel::LAST_STATS.time;
     int moves = GameSubPanel::LAST_STATS.moves;
@@ -119,11 +119,11 @@ void PanelPunkty::update(){
     }
 }
 
-void PanelPunkty::typeChanged(wxCommandEvent& event){
+void ScorePanel::typeChanged(wxCommandEvent& event){
     comboBoxChanged();    
 }
 
-void PanelPunkty::comboBoxChanged(){
+void ScorePanel::comboBoxChanged(){
     if(_typesList->GetSelection()==wxNOT_FOUND){
         return;
     }

@@ -9,11 +9,11 @@
 #include <wx/frame.h>
 #include <wx/button.h>
 
-class PanelGlowny : public wxPanel{
+class MainPanel : public wxPanel{
     public :
         
-        PanelGlowny (wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name);
-        virtual ~PanelGlowny();   
+        MainPanel (wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name);
+        virtual ~MainPanel();   
         
 		void StartClick(wxCommandEvent& event);     
 		void ExitClick(wxCommandEvent& event);  

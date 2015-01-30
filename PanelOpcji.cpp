@@ -2,19 +2,19 @@
 
 #include "ProjektMain.h"
 
-BEGIN_EVENT_TABLE(PanelOpcji,wxPanel)
-    EVT_BUTTON(ID_START,PanelOpcji::StartClick)
-    EVT_BUTTON(ID_BACK,PanelOpcji::BackClick)
-    EVT_BUTTON(ID_CONTINUE,PanelOpcji::ContinueClick)
-	EVT_COMMAND_SCROLL(ID_SCROLL_SIZE,PanelOpcji::SizeScroll)
-    EVT_CHOICE(ID_CHOICE2, PanelOpcji::choosedImage)
+BEGIN_EVENT_TABLE(OptionsPanel,wxPanel)
+    EVT_BUTTON(ID_START,OptionsPanel::StartClick)
+    EVT_BUTTON(ID_BACK,OptionsPanel::BackClick)
+    EVT_BUTTON(ID_CONTINUE,OptionsPanel::ContinueClick)
+	EVT_COMMAND_SCROLL(ID_SCROLL_SIZE,OptionsPanel::SizeScroll)
+    EVT_CHOICE(ID_CHOICE2, OptionsPanel::choosedImage)
 END_EVENT_TABLE()
 
 
-const wxString PanelOpcji::labels [] = {"Pojedyncze elementy","Kolumny/Wiersze"};
-const wxString PanelOpcji::images [] = {"obraz", "obraz2"};
+const wxString OptionsPanel::labels [] = {"Pojedyncze elementy","Kolumny/Wiersze"};
+const wxString OptionsPanel::images [] = {"obraz", "obraz2"};
 
-PanelOpcji::PanelOpcji (wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name): wxPanel(parent,ID,pos,size,style,name){
+OptionsPanel::OptionsPanel (wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize size, long style, const wxString &name): wxPanel(parent,ID,pos,size,style,name){
     
     _buttonStart = new wxButton(this,ID_START,wxString("Rozpocznij"),wxPoint(180,50), wxSize(120,45),0,wxDefaultValidator, "START_OPTIONS");
     _buttonBack = new wxButton(this,ID_BACK,wxString("Wróæ"),wxPoint(350,50), wxSize(120,45),0,wxDefaultValidator, "BACK_OPTIONS");
@@ -46,10 +46,10 @@ PanelOpcji::PanelOpcji (wxFrame * parent, wxWindowID ID, wxPoint pos, wxSize siz
         _imgPreview = new wxBitmapButton(this,ID_ICON, wxBitmap( MyImage.Rescale(350,350) ), wxPoint(410,160), wxSize(350,350), 0, wxDefaultValidator, "WxButton2");        
 }
 
-PanelOpcji::~PanelOpcji(){    
+OptionsPanel::~OptionsPanel(){    
 }
 
-void PanelOpcji::StartClick(wxCommandEvent& event){
+void OptionsPanel::StartClick(wxCommandEvent& event){
     ///prze³¹czenie na panel opcji gry    
     ///stworzenie odpowiedniego obiektu PanelGry (w zale¿noœci od wybranych parametrów)
            
@@ -70,18 +70,18 @@ void PanelOpcji::StartClick(wxCommandEvent& event){
                 if( a.ShowModal() == wxID_NO ) return;
             }
         }
-        ProjektFrame::FRAME->setGamePanel(new PanelGry(ProjektFrame::FRAME,ProjektFrame::FRAME->ID_PANEL_GRY, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_GRY"),MyImage,3+_scrollSize->GetThumbPosition(), (_choiceGameType ->GetSelection () == 0) ) );
+        ProjektFrame::FRAME->setGamePanel(new GamePanel(ProjektFrame::FRAME,ProjektFrame::FRAME->ID_PANEL_GRY, wxPoint(0,0), wxSize(800,600), wxTAB_TRAVERSAL, wxString("PANEL_GRY"),MyImage,3+_scrollSize->GetThumbPosition(), (_choiceGameType ->GetSelection () == 0) ) );
         ProjektFrame::FRAME->setState(STATE_GAME);
         Hide();  
     }
 }
      
-void PanelOpcji::BackClick(wxCommandEvent& event){
+void OptionsPanel::BackClick(wxCommandEvent& event){
     /// wyjœcie z gry
     ProjektFrame::FRAME->setState(STATE_MAIN);
 }
 
-void PanelOpcji::ContinueClick(wxCommandEvent& event){    
+void OptionsPanel::ContinueClick(wxCommandEvent& event){    
     if(ProjektFrame::FRAME->gameStarted()){
         ProjektFrame::FRAME->setState(STATE_GAME);      
         Hide();   
@@ -89,7 +89,7 @@ void PanelOpcji::ContinueClick(wxCommandEvent& event){
         _buttonContinue -> Hide();
 }
  
-void PanelOpcji::SizeScroll(wxScrollEvent& event){
+void OptionsPanel::SizeScroll(wxScrollEvent& event){
     wxString str = "Wymiary ukladanki : ";
 	switch(_scrollSize->GetThumbPosition()){
         case 0: {str = str + "3x3";break;}
@@ -100,7 +100,7 @@ void PanelOpcji::SizeScroll(wxScrollEvent& event){
 	_textScrollSize->SetLabel(str);
 }	
 
-void PanelOpcji::choosedImage(wxCommandEvent& event){    
+void OptionsPanel::choosedImage(wxCommandEvent& event){    
     wxString file;
     file = images[_choiceImage ->GetSelection ()];
     file = file + ".jpg";      
@@ -115,7 +115,7 @@ void PanelOpcji::choosedImage(wxCommandEvent& event){
     }  
 }
 
-void PanelOpcji::onCurrentPanel(bool current){
+void OptionsPanel::onCurrentPanel(bool current){
     if(current){
         if(ProjektFrame::FRAME->gameStarted())
             _buttonContinue->Show();
