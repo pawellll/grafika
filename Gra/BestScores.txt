@@ -1,4 +1,0 @@
-nick 34 56 0
-Janeed 71 154 0
-nick 34 56 8
-Janeed 71 154 8
